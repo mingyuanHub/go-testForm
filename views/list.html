@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style>
+        td {
+            border:1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="/"><button>添加</button></a>
+    <table>
+        <thead>
+            <td>id</td>
+            <td>name</td>
+            <td>create_time</td>
+        </thead>
+        {{ range . }}
+        <tr id="blog{{.Id}}">
+            <td> {{.Id}} </td>
+            <td> {{.Name}} </td>
+            <td> {{.CreateTime}} </td>
+            <td><button onclick="deleteBlog({{ .Id }})">删除</button></td>
+        </tr>
+        {{ end }}
+    </table>
+</body>
+<script>
+    function deleteBlog(id) {
+       $.ajax({
+        url: '/delete',
+        type: 'Post',
+        contentType: "application/json;charset=UTF-8",
+        dataType: 'json',
+        data: JSON.stringify({
+            "id":id
+        }),
+        success: function(res){
+            if (res.code == 200) {
+                $("#blog"+id).remove()
+            } else {
+                alert("删除失败")
+            }
+        },
+        error: function(){
+            
+        }
+       })
+    }
+</script>
+</html>
