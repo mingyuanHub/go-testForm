@@ -11,6 +11,11 @@ func HomeView(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, "")
 }
 
+func CreateView(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("views/create.html")
+	t.Execute(w, "")
+}
+
 func ListView(w http.ResponseWriter, r *http.Request) {
 	list := models.List()
 	t, _ := template.ParseFiles("views/list.html")

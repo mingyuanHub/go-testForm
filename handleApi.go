@@ -8,9 +8,7 @@ import (
 )
 
 func Add(w http.ResponseWriter, r *http.Request) {
-
 	blogName := r.PostFormValue("blogName")
-	// fmt.Fprintf(w, blogName)
 
 	blog := models.Blog{}
 	blog.Name = blogName
