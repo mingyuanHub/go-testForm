@@ -16,7 +16,7 @@ func main() {
 	bindApi(mux)
 
 	server := http.Server{
-		Addr:    "127.0.0.1:8080",
+		Addr:    "0.0.0.0:8080",
 		Handler: mux,
 	}
 
